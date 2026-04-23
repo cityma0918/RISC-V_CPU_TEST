@@ -1,0 +1,33 @@
+
+F:\桌面\test\test_fix\build\tests\dual_issue_load_alu.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	06000413          	li	s0,96
+   4:	00500293          	li	t0,5
+   8:	00542023          	sw	t0,0(s0)
+   c:	00042303          	lw	t1,0(s0)
+  10:	00700393          	li	t2,7
+  14:	00730e33          	add	t3,t1,t2
+  18:	00c00e93          	li	t4,12
+  1c:	03de1a63          	bne	t3,t4,50 <fail>
+  20:	01c42223          	sw	t3,4(s0)
+  24:	00100f93          	li	t6,1
+  28:	00442483          	lw	s1,4(s0)
+  2c:	03c49263          	bne	s1,t3,50 <fail>
+  30:	00900f13          	li	t5,9
+  34:	01ff09b3          	add	s3,t5,t6
+  38:	00a00e93          	li	t4,10
+  3c:	01d99a63          	bne	s3,t4,50 <fail>
+  40:	000012b7          	lui	t0,0x1
+  44:	00100313          	li	t1,1
+  48:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  4c:	0000006f          	j	4c <_start+0x4c>
+
+00000050 <fail>:
+  50:	000012b7          	lui	t0,0x1
+  54:	00200313          	li	t1,2
+  58:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  5c:	0000006f          	j	5c <fail+0xc>

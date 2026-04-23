@@ -1,0 +1,61 @@
+
+F:\桌面\test\test_fix\build\tests\dual_issue_mixed.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	0d000913          	li	s2,208
+   4:	00b00093          	li	ra,11
+   8:	01600113          	li	sp,22
+   c:	02100193          	li	gp,33
+  10:	02c00213          	li	tp,44
+  14:	002082b3          	add	t0,ra,sp
+  18:	00418333          	add	t1,gp,tp
+  1c:	001243b3          	xor	t2,tp,ra
+  20:	00316433          	or	s0,sp,gp
+  24:	02100393          	li	t2,33
+  28:	08729863          	bne	t0,t2,b8 <fail>
+  2c:	04d00393          	li	t2,77
+  30:	08731463          	bne	t1,t2,b8 <fail>
+  34:	02700393          	li	t2,39
+  38:	08739063          	bne	t2,t2,b8 <fail>
+  3c:	03700393          	li	t2,55
+  40:	06741c63          	bne	s0,t2,b8 <fail>
+  44:	001084b3          	add	s1,ra,ra
+  48:	00248533          	add	a0,s1,sp
+  4c:	02c00393          	li	t2,44
+  50:	06751463          	bne	a0,t2,b8 <fail>
+  54:	00100593          	li	a1,1
+  58:	00258593          	addi	a1,a1,2
+  5c:	00300393          	li	t2,3
+  60:	04759c63          	bne	a1,t2,b8 <fail>
+  64:	00692023          	sw	t1,0(s2)
+  68:	00092603          	lw	a2,0(s2)
+  6c:	ff960693          	addi	a3,a2,-7
+  70:	04600393          	li	t2,70
+  74:	04769263          	bne	a3,t2,b8 <fail>
+  78:	00d68463          	beq	a3,a3,80 <branch_ok>
+  7c:	06300713          	li	a4,99
+
+00000080 <branch_ok>:
+  80:	00500713          	li	a4,5
+  84:	00500393          	li	t2,5
+  88:	02771863          	bne	a4,t2,b8 <fail>
+  8c:	00092a03          	lw	s4,0(s2)
+  90:	00400a93          	li	s5,4
+  94:	015a8b33          	add	s6,s5,s5
+  98:	ff8b0b93          	addi	s7,s6,-8
+  9c:	000b9e63          	bnez	s7,b8 <fail>
+  a0:	04d00393          	li	t2,77
+  a4:	007a1a63          	bne	s4,t2,b8 <fail>
+  a8:	000012b7          	lui	t0,0x1
+  ac:	00100313          	li	t1,1
+  b0:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  b4:	0000006f          	j	b4 <branch_ok+0x34>
+
+000000b8 <fail>:
+  b8:	000012b7          	lui	t0,0x1
+  bc:	00200313          	li	t1,2
+  c0:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  c4:	0000006f          	j	c4 <fail+0xc>

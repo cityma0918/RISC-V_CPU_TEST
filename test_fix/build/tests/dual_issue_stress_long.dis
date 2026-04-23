@@ -1,0 +1,136 @@
+
+F:\桌面\test\test_fix\build\tests\dual_issue_stress_long.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	20000413          	li	s0,512
+   4:	00100493          	li	s1,1
+   8:	00200913          	li	s2,2
+   c:	00300993          	li	s3,3
+  10:	00400a13          	li	s4,4
+  14:	00500a93          	li	s5,5
+  18:	00600b13          	li	s6,6
+  1c:	00700b93          	li	s7,7
+  20:	00800c13          	li	s8,8
+  24:	00900c93          	li	s9,9
+  28:	00a00d13          	li	s10,10
+  2c:	00b00d93          	li	s11,11
+  30:	01100293          	li	t0,17
+  34:	00542023          	sw	t0,0(s0)
+  38:	02200293          	li	t0,34
+  3c:	00542223          	sw	t0,4(s0)
+  40:	03300293          	li	t0,51
+  44:	00542423          	sw	t0,8(s0)
+  48:	000102b7          	lui	t0,0x10
+  4c:	f8028293          	addi	t0,t0,-128 # ff80 <_end+0xef70>
+  50:	00542623          	sw	t0,12(s0)
+  54:	135722b7          	lui	t0,0x13572
+  58:	46828293          	addi	t0,t0,1128 # 13572468 <_stack_top+0x13562468>
+  5c:	00542823          	sw	t0,16(s0)
+  60:	00042303          	lw	t1,0(s0)
+  64:	01248533          	add	a0,s1,s2
+  68:	00442383          	lw	t2,4(s0)
+  6c:	412a85b3          	sub	a1,s5,s2
+  70:	00c40e03          	lb	t3,12(s0)
+  74:	018bc633          	xor	a2,s7,s8
+  78:	00c44e83          	lbu	t4,12(s0)
+  7c:	0149e6b3          	or	a3,s3,s4
+  80:	01041f03          	lh	t5,16(s0)
+  84:	01acf733          	and	a4,s9,s10
+  88:	01045783          	lhu	a5,16(s0)
+  8c:	00991833          	sll	a6,s2,s1
+  90:	00a42a23          	sw	a0,20(s0)
+  94:	005d8893          	addi	a7,s11,5
+  98:	00b41c23          	sh	a1,24(s0)
+  9c:	0148a293          	slti	t0,a7,20
+  a0:	00c40d23          	sb	a2,26(s0)
+  a4:	0184bfb3          	sltu	t6,s1,s8
+  a8:	00d42e23          	sw	a3,28(s0)
+  ac:	01f74493          	xori	s1,a4,31
+  b0:	03041023          	sh	a6,32(s0)
+  b4:	0208e913          	ori	s2,a7,32
+  b8:	03d40123          	sb	t4,34(s0)
+  bc:	02f97993          	andi	s3,s2,47
+  c0:	00998a33          	add	s4,s3,s1
+  c4:	00842a83          	lw	s5,8(s0)
+  c8:	014a8b33          	add	s6,s5,s4
+  cc:	013b0bb3          	add	s7,s6,s3
+  d0:	01442c03          	lw	s8,20(s0)
+  d4:	01c42c83          	lw	s9,28(s0)
+  d8:	01100f93          	li	t6,17
+  dc:	11f31863          	bne	t1,t6,1ec <fail>
+  e0:	02200f93          	li	t6,34
+  e4:	11f39463          	bne	t2,t6,1ec <fail>
+  e8:	f8000f93          	li	t6,-128
+  ec:	11fe1063          	bne	t3,t6,1ec <fail>
+  f0:	08000f93          	li	t6,128
+  f4:	0ffe9c63          	bne	t4,t6,1ec <fail>
+  f8:	00002fb7          	lui	t6,0x2
+  fc:	468f8f93          	addi	t6,t6,1128 # 2468 <_end+0x1458>
+ 100:	0fff1663          	bne	t5,t6,1ec <fail>
+ 104:	00002fb7          	lui	t6,0x2
+ 108:	468f8f93          	addi	t6,t6,1128 # 2468 <_end+0x1458>
+ 10c:	0ff79063          	bne	a5,t6,1ec <fail>
+ 110:	00300f93          	li	t6,3
+ 114:	0df51c63          	bne	a0,t6,1ec <fail>
+ 118:	00300f93          	li	t6,3
+ 11c:	0df59863          	bne	a1,t6,1ec <fail>
+ 120:	00f00f93          	li	t6,15
+ 124:	0df61463          	bne	a2,t6,1ec <fail>
+ 128:	00700f93          	li	t6,7
+ 12c:	0df69063          	bne	a3,t6,1ec <fail>
+ 130:	00800f93          	li	t6,8
+ 134:	0bf71c63          	bne	a4,t6,1ec <fail>
+ 138:	00400f93          	li	t6,4
+ 13c:	0bf81863          	bne	a6,t6,1ec <fail>
+ 140:	01000f93          	li	t6,16
+ 144:	0bf89463          	bne	a7,t6,1ec <fail>
+ 148:	00100f93          	li	t6,1
+ 14c:	0bf29063          	bne	t0,t6,1ec <fail>
+ 150:	000f8713          	mv	a4,t6
+ 154:	00100f93          	li	t6,1
+ 158:	09f71a63          	bne	a4,t6,1ec <fail>
+ 15c:	01700f93          	li	t6,23
+ 160:	09f49663          	bne	s1,t6,1ec <fail>
+ 164:	03000f93          	li	t6,48
+ 168:	09f91263          	bne	s2,t6,1ec <fail>
+ 16c:	02000f93          	li	t6,32
+ 170:	07f99e63          	bne	s3,t6,1ec <fail>
+ 174:	01442d03          	lw	s10,20(s0)
+ 178:	00300f93          	li	t6,3
+ 17c:	07fd1863          	bne	s10,t6,1ec <fail>
+ 180:	01845d83          	lhu	s11,24(s0)
+ 184:	00300f93          	li	t6,3
+ 188:	07fd9263          	bne	s11,t6,1ec <fail>
+ 18c:	01a44503          	lbu	a0,26(s0)
+ 190:	00f00f93          	li	t6,15
+ 194:	05f51c63          	bne	a0,t6,1ec <fail>
+ 198:	01c42583          	lw	a1,28(s0)
+ 19c:	00700f93          	li	t6,7
+ 1a0:	05f59663          	bne	a1,t6,1ec <fail>
+ 1a4:	02045603          	lhu	a2,32(s0)
+ 1a8:	00400f93          	li	t6,4
+ 1ac:	05f61063          	bne	a2,t6,1ec <fail>
+ 1b0:	02244683          	lbu	a3,34(s0)
+ 1b4:	08000f93          	li	t6,128
+ 1b8:	03f69a63          	bne	a3,t6,1ec <fail>
+ 1bc:	00730733          	add	a4,t1,t2
+ 1c0:	01d70733          	add	a4,a4,t4
+ 1c4:	00a70733          	add	a4,a4,a0
+ 1c8:	00b70733          	add	a4,a4,a1
+ 1cc:	00c70733          	add	a4,a4,a2
+ 1d0:	00d70733          	add	a4,a4,a3
+ 1d4:	14d00f93          	li	t6,333
+ 1d8:	01f71a63          	bne	a4,t6,1ec <fail>
+ 1dc:	000012b7          	lui	t0,0x1
+ 1e0:	00100313          	li	t1,1
+ 1e4:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+ 1e8:	0000006f          	j	1e8 <_start+0x1e8>
+
+000001ec <fail>:
+ 1ec:	000012b7          	lui	t0,0x1
+ 1f0:	00200313          	li	t1,2
+ 1f4:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+ 1f8:	0000006f          	j	1f8 <fail+0xc>

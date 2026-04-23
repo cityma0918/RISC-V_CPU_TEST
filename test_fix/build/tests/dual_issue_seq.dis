@@ -1,0 +1,42 @@
+
+F:\桌面\test\test_fix\build\tests\dual_issue_seq.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00100093          	li	ra,1
+   4:	00200113          	li	sp,2
+   8:	00300193          	li	gp,3
+   c:	00400213          	li	tp,4
+  10:	00500293          	li	t0,5
+  14:	00600313          	li	t1,6
+  18:	00700393          	li	t2,7
+  1c:	00800413          	li	s0,8
+  20:	002084b3          	add	s1,ra,sp
+  24:	00418533          	add	a0,gp,tp
+  28:	006285b3          	add	a1,t0,t1
+  2c:	00838633          	add	a2,t2,s0
+  30:	00300393          	li	t2,3
+  34:	04749063          	bne	s1,t2,74 <fail>
+  38:	00700393          	li	t2,7
+  3c:	02751c63          	bne	a0,t2,74 <fail>
+  40:	00b00393          	li	t2,11
+  44:	02759863          	bne	a1,t2,74 <fail>
+  48:	00f00393          	li	t2,15
+  4c:	02761463          	bne	a2,t2,74 <fail>
+  50:	00a486b3          	add	a3,s1,a0
+  54:	00b686b3          	add	a3,a3,a1
+  58:	00c686b3          	add	a3,a3,a2
+  5c:	02400393          	li	t2,36
+  60:	00769a63          	bne	a3,t2,74 <fail>
+  64:	000012b7          	lui	t0,0x1
+  68:	00100313          	li	t1,1
+  6c:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  70:	0000006f          	j	70 <_start+0x70>
+
+00000074 <fail>:
+  74:	000012b7          	lui	t0,0x1
+  78:	00200313          	li	t1,2
+  7c:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  80:	0000006f          	j	80 <fail+0xc>

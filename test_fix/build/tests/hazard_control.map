@@ -1,0 +1,44 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x0000000000000000 0x0000000000010000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+                0x0000000000000000                . = ORIGIN (RAM)
+
+.text           0x0000000000000000       0x80
+ *(.text.init)
+ .text.init     0x0000000000000000       0x80 C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+                0x0000000000000000                _start
+ *(.text*)
+ .text          0x0000000000000080        0x0 C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+ *(.rodata*)
+                0x0000000000000080                . = ALIGN (0x4)
+
+.data           0x0000000000000080        0x0
+ *(.data*)
+ .data          0x0000000000000080        0x0 C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+                0x0000000000000080                . = ALIGN (0x4)
+
+.bss            0x0000000000000080        0x0
+ *(.bss*)
+ .bss           0x0000000000000080        0x0 C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+ *(COMMON)
+
+.signature      0x0000000000001000        0x4
+                0x0000000000001000                __signature = .
+ *(.signature)
+ .signature     0x0000000000001000        0x4 C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o
+                0x0000000000001010                . = ALIGN (0x10)
+                0x0000000000001010                _end = .
+                0x0000000000010000                _stack_top = (ORIGIN (RAM) + LENGTH (RAM))
+OUTPUT(F:\×ÀÃæ\test\test_fix\build\tests\hazard_control.elf elf32-littleriscv)
+
+.riscv.attributes
+                0x0000000000000000       0x1a
+ .riscv.attributes
+                0x0000000000000000       0x1a C:\Users\MSC0918\AppData\Local\Temp\ccgDRqo8.o

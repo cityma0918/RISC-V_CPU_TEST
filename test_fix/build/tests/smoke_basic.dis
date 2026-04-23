@@ -1,0 +1,33 @@
+
+F:\桌面\test\test_fix\build\tests\smoke_basic.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00500093          	li	ra,5
+   4:	00700113          	li	sp,7
+   8:	002081b3          	add	gp,ra,sp
+   c:	00c00393          	li	t2,12
+  10:	02719c63          	bne	gp,t2,48 <fail>
+  14:	00001237          	lui	tp,0x1
+  18:	00000297          	auipc	t0,0x0
+  1c:	00828293          	addi	t0,t0,8 # 20 <_start+0x20>
+  20:	06000313          	li	t1,96
+  24:	00332023          	sw	gp,0(t1)
+  28:	00032383          	lw	t2,0(t1)
+  2c:	00339e63          	bne	t2,gp,48 <fail>
+  30:	00338463          	beq	t2,gp,38 <pass>
+  34:	0140006f          	j	48 <fail>
+
+00000038 <pass>:
+  38:	000012b7          	lui	t0,0x1
+  3c:	00100313          	li	t1,1
+  40:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  44:	0000006f          	j	44 <pass+0xc>
+
+00000048 <fail>:
+  48:	000012b7          	lui	t0,0x1
+  4c:	00200313          	li	t1,2
+  50:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  54:	0000006f          	j	54 <fail+0xc>

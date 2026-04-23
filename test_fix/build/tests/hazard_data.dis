@@ -1,0 +1,43 @@
+
+F:\桌面\test\test_fix\build\tests\hazard_data.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	09000413          	li	s0,144
+   4:	00300093          	li	ra,3
+   8:	00108133          	add	sp,ra,ra
+   c:	001101b3          	add	gp,sp,ra
+  10:	00218233          	add	tp,gp,sp
+  14:	00f00393          	li	t2,15
+  18:	06721063          	bne	tp,t2,78 <fail>
+  1c:	00b00293          	li	t0,11
+  20:	00200313          	li	t1,2
+  24:	006283b3          	add	t2,t0,t1
+  28:	00d00393          	li	t2,13
+  2c:	04739663          	bne	t2,t2,78 <fail>
+  30:	00442023          	sw	tp,0(s0)
+  34:	00042783          	lw	a5,0(s0)
+  38:	001784b3          	add	s1,a5,ra
+  3c:	01200393          	li	t2,18
+  40:	02749c63          	bne	s1,t2,78 <fail>
+  44:	01400513          	li	a0,20
+  48:	00a42223          	sw	a0,4(s0)
+  4c:	00442583          	lw	a1,4(s0)
+  50:	ffb58613          	addi	a2,a1,-5
+  54:	02461263          	bne	a2,tp,78 <fail>
+  58:	05500693          	li	a3,85
+  5c:	00d40423          	sb	a3,8(s0)
+  60:	00844703          	lbu	a4,8(s0)
+  64:	00d71a63          	bne	a4,a3,78 <fail>
+  68:	000012b7          	lui	t0,0x1
+  6c:	00100313          	li	t1,1
+  70:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  74:	0000006f          	j	74 <_start+0x74>
+
+00000078 <fail>:
+  78:	000012b7          	lui	t0,0x1
+  7c:	00200313          	li	t1,2
+  80:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  84:	0000006f          	j	84 <fail+0xc>

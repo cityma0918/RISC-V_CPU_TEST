@@ -1,0 +1,51 @@
+
+F:\桌面\test\test_fix\build\tests\hazard_control.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	00000093          	li	ra,0
+   4:	00008463          	beqz	ra,c <taken0>
+   8:	06300113          	li	sp,99
+
+0000000c <taken0>:
+   c:	00500113          	li	sp,5
+  10:	00500393          	li	t2,5
+  14:	04711e63          	bne	sp,t2,70 <fail>
+  18:	00009663          	bnez	ra,24 <target1>
+  1c:	00700193          	li	gp,7
+  20:	0080006f          	j	28 <after1>
+
+00000024 <target1>:
+  24:	06300193          	li	gp,99
+
+00000028 <after1>:
+  28:	00700393          	li	t2,7
+  2c:	04719263          	bne	gp,t2,70 <fail>
+  30:	0080006f          	j	38 <jal_target>
+  34:	06300213          	li	tp,99
+
+00000038 <jal_target>:
+  38:	00b00213          	li	tp,11
+  3c:	00b00393          	li	t2,11
+  40:	02721863          	bne	tp,t2,70 <fail>
+  44:	00000297          	auipc	t0,0x0
+  48:	01028293          	addi	t0,t0,16 # 54 <jalr_target>
+  4c:	00028067          	jr	t0
+  50:	06300313          	li	t1,99
+
+00000054 <jalr_target>:
+  54:	00d00313          	li	t1,13
+  58:	00d00393          	li	t2,13
+  5c:	00731a63          	bne	t1,t2,70 <fail>
+  60:	000012b7          	lui	t0,0x1
+  64:	00100313          	li	t1,1
+  68:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  6c:	0000006f          	j	6c <jalr_target+0x18>
+
+00000070 <fail>:
+  70:	000012b7          	lui	t0,0x1
+  74:	00200313          	li	t1,2
+  78:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  7c:	0000006f          	j	7c <fail+0xc>

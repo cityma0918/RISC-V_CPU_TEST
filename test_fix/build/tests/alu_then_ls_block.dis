@@ -1,0 +1,30 @@
+
+F:\桌面\test\test_fix\build\tests\alu_then_ls_block.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <_start>:
+   0:	06000413          	li	s0,96
+   4:	00100093          	li	ra,1
+   8:	00200113          	li	sp,2
+   c:	00300193          	li	gp,3
+  10:	00142023          	sw	ra,0(s0)
+  14:	00241223          	sh	sp,4(s0)
+  18:	00340423          	sb	gp,8(s0)
+  1c:	00042203          	lw	tp,0(s0)
+  20:	00441283          	lh	t0,4(s0)
+  24:	00844303          	lbu	t1,8(s0)
+  28:	00121e63          	bne	tp,ra,44 <fail>
+  2c:	00229c63          	bne	t0,sp,44 <fail>
+  30:	00331a63          	bne	t1,gp,44 <fail>
+  34:	000012b7          	lui	t0,0x1
+  38:	00100313          	li	t1,1
+  3c:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  40:	0000006f          	j	40 <_start+0x40>
+
+00000044 <fail>:
+  44:	000012b7          	lui	t0,0x1
+  48:	00200313          	li	t1,2
+  4c:	0062a023          	sw	t1,0(t0) # 1000 <__signature>
+  50:	0000006f          	j	50 <fail+0xc>
